@@ -287,3 +287,53 @@ h2 {
     animation-iteration-count: 1 !important;
   }
 }
+/* Responsive improvements for phones and tablets */
+@media (max-width: 640px) {
+  .navigation {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 4rem 0 3rem;
+  }
+
+  .content-section {
+    padding: 2.5rem 0;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    min-width: 0;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .navigation {
+    align-items: flex-start;
+  }
+
+  .nav-links a {
+    padding: 0.4rem;
+    font-size: 0.875rem;
+  }
+
+  .button {
+    max-width: 100%;
+    text-align: center;
+  }
+}
