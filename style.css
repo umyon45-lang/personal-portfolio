@@ -83,6 +83,10 @@ a {
   text-decoration: underline;
   text-underline-offset: 6px;
 }
+.nav-link.active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
 
 .hero {
   width: min(100% - 2rem, 800px);
