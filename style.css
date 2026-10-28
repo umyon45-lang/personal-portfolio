@@ -37,23 +37,27 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 24px;
+  padding: 18px 24px;
 }
 
 .logo {
   color: #60a5fa;
-  font-size: 1.25rem;
+  font-size: 1.6rem;
   font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -1px;
 }
 
 .nav-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0 auto;
-  margin: 0 auto;
+  gap: 28px;
+  padding: 0 ;
+  margin: 0 ;
   list-style: none;
   text-decoration:none;
+  align-items: center;
 }
 
 .nav-links a {
@@ -72,8 +76,8 @@ a {
 .nav-links a:focus-visible,
 .logo:focus-visible,
 .button:focus-visible {
-  outline: 3px solid #93c5fd;
-  outline-offset: 3px;
+  outline: 2px solid #93c5fd;
+  outline-offset: 5px;
 }
 
 .hero {
