@@ -136,6 +136,20 @@
   <footer class="site-footer">
     <p>© 2026 Yonas. Designed and built by me.</p>
   </footer>
+<div class="live-clock">
+  <p>My Local Time</p>
+  <h3 id="clock">00:00:00</h3>
+</div>
 
+<script>
+  function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").textContent =
+      now.toLocaleTimeString();
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
 </body>
 </html>
