@@ -633,24 +633,3 @@ a:focus-visible {
     scroll-behavior: auto !important;
   }
 }
-.live-clock {
-  text-align: center;
-  padding: 20px;
-  margin: 30px auto;
-  max-width: 220px;
-  background: #161b22;
-  color: white;
-  border-radius: 12px;
-  border: 1px solid #30363d;
-}
-
-.live-clock p {
-  color: #58a6ff;
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.live-clock h3 {
-  font-size: 25px;
-  letter-spacing: 2px;
-}
