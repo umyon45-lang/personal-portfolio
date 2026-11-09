@@ -348,7 +348,67 @@ h2 {
 }
 
 /* ========================================
-   8. PROJECT GRID
+   8. ACHIEVEMENTS
+======================================== */
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.achievement-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, var(--surface), var(--bg-secondary));
+  box-shadow: 0 12px 32px rgb(0 0 0 / 18%);
+  transition: var(--transition);
+}
+
+.achievement-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 38px rgb(0 0 0 / 28%);
+}
+
+.achievement-image-link {
+  display: block;
+  padding: 1rem;
+  background: #f1f5f9;
+}
+
+.achievement-image-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.achievement-image-link:hover img {
+  filter: brightness(1.04);
+}
+
+.achievement-copy {
+  padding: 1.5rem;
+}
+
+.achievement-copy h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.achievement-copy p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* ========================================
+   9. PROJECT GRID
 ======================================== */
 
 .project-grid {
