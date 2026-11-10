@@ -353,7 +353,8 @@ h2 {
 
 .achievement-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, 800px);
   gap: 1.5rem;
   margin-top: 2.5rem;
 }
@@ -376,19 +377,29 @@ h2 {
 
 .achievement-image-link {
   display: block;
+  overflow: hidden;
   padding: 1rem;
   background: #f1f5f9;
+  transition: var(--transition);
 }
 
 .achievement-image-link img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 250px;
+  object-fit: contain;
   border-radius: 6px;
   transition: var(--transition);
 }
 
-.achievement-image-link:hover img {
+.achievement-image-link:hover,
+.achievement-image-link:focus-visible {
+  box-shadow: 0 0 20px rgb(56 189 248 / 28%);
+}
+
+.achievement-image-link:hover img,
+.achievement-image-link:focus-visible img {
+  transform: scale(1.035);
   filter: brightness(1.04);
 }
 
@@ -633,6 +644,10 @@ a:focus-visible {
   }
 
   .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-grid {
     grid-template-columns: 1fr;
   }
 
