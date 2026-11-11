@@ -419,7 +419,179 @@ h2 {
 }
 
 /* ========================================
-   9. PROJECT GRID
+   9. CERTIFICATES
+======================================== */
+
+.certificate-section {
+  width: min(100% - 2rem, 1040px);
+}
+
+.certificate-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: 2.5rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgb(56 189 248 / 9%), transparent 48%),
+    linear-gradient(145deg, var(--surface), var(--bg-secondary));
+  box-shadow: 0 18px 48px rgb(0 0 0 / 22%);
+  transition: var(--transition);
+}
+
+.certificate-card:hover {
+  transform: translateY(-5px);
+  border-color: rgb(56 189 248 / 55%);
+  box-shadow: 0 22px 54px rgb(0 0 0 / 30%);
+}
+
+.certificate-copy {
+  padding: 0.5rem;
+}
+
+.certificate-copy .certificate-provider {
+  margin-bottom: 0.9rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.certificate-copy h3 {
+  margin-bottom: 0.9rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.7px;
+}
+
+.certificate-copy > p:last-child {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.certificate-image-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.75rem;
+  border: 1px solid rgb(255 255 255 / 55%);
+  border-radius: 12px;
+  background: #f1f5f9;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 28%);
+  cursor: zoom-in;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.certificate-image-button img {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  margin: 0 auto;
+  border-radius: 6px;
+  object-fit: contain;
+  transition: transform 0.45s ease;
+}
+
+.certificate-image-button:hover,
+.certificate-image-button:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 42px rgb(0 0 0 / 35%), 0 0 24px rgb(56 189 248 / 20%);
+}
+
+.certificate-image-button:hover img,
+.certificate-image-button:focus-visible img {
+  transform: scale(1.025);
+}
+
+.certificate-view-hint {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 50px;
+  background: rgb(8 13 26 / 82%);
+  color: var(--heading);
+  font-size: 0.78rem;
+  font-weight: 650;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: var(--transition);
+}
+
+.certificate-image-button:hover .certificate-view-hint,
+.certificate-image-button:focus-visible .certificate-view-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certificate-preview {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+  margin: 0;
+  padding: clamp(3.5rem, 7vh, 5rem) clamp(1rem, 4vw, 3rem) 1.5rem;
+  overflow: auto;
+  border: 0;
+  background: rgb(3 7 18 / 97%);
+}
+
+.certificate-preview[open] {
+  display: grid;
+  place-items: center;
+}
+
+.certificate-preview::backdrop {
+  background: rgb(3 7 18 / 96%);
+}
+
+.certificate-preview > img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 1500px);
+  height: auto;
+  max-height: 100%;
+  margin: auto;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 50%);
+  object-fit: contain;
+}
+
+.certificate-preview-close {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 50%;
+  background: rgb(17 28 48 / 90%);
+  color: var(--heading);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.certificate-preview-close:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+/* ========================================
+   10. PROJECT GRID
 ======================================== */
 
 .project-grid {
@@ -542,7 +714,7 @@ h2 {
 }
 
 /* ========================================
-   9. CONTACT SECTION
+   11. CONTACT SECTION
 ======================================== */
 
 #contact {
@@ -554,7 +726,7 @@ h2 {
 }
 
 /* ========================================
-   10. FOOTER
+   12. FOOTER
 ======================================== */
 
 .site-footer {
@@ -571,7 +743,7 @@ h2 {
 }
 
 /* ========================================
-   11. ANIMATIONS
+   13. ANIMATIONS
 ======================================== */
 
 @keyframes fadeUp {
@@ -587,7 +759,7 @@ h2 {
 }
 
 /* ========================================
-   12. ACCESSIBILITY
+   14. ACCESSIBILITY
 ======================================== */
 
 a:focus-visible {
@@ -596,7 +768,7 @@ a:focus-visible {
 }
 
 /* ========================================
-   13. RESPONSIVE DESIGN
+   15. RESPONSIVE DESIGN
 ======================================== */
 
 @media (max-width: 700px) {
@@ -651,6 +823,18 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 
+  .certificate-card {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-copy {
+    padding: 0.25rem;
+  }
+
+  .certificate-image-button img {
+    max-height: 360px;
+  }
+
   .project-card {
     padding: 1.5rem;
   }
@@ -662,7 +846,7 @@ a:focus-visible {
 }
 
 /* ========================================
-   14. SMALL MOBILE SCREENS
+   16. SMALL MOBILE SCREENS
 ======================================== */
 
 @media (max-width: 380px) {
@@ -691,7 +875,7 @@ a:focus-visible {
 }
 
 /* ========================================
-   15. REDUCED MOTION
+   17. REDUCED MOTION
 ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
