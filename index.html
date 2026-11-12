@@ -51,7 +51,7 @@
       </div>
     </section>
 
-    <section class="content-section" id="about">
+    <section class="content-section" id="about" data-reveal>
       <p class="eyebrow">A little about me</p>
       <h2>About Me</h2>
 
@@ -63,7 +63,7 @@
       </p>
     </section>
 
-    <section class="content-section" id="skills">
+    <section class="content-section" id="skills" data-reveal>
       <p class="eyebrow">My technical toolkit</p>
       <h2>Skills</h2>
 
@@ -81,7 +81,7 @@
       </ul>
     </section>
 
-    <section class="content-section" id="achievements">
+    <section class="content-section" id="achievements" data-reveal>
       <p class="eyebrow">Learning milestones</p>
       <h2>Certifications &amp; Achievements</h2>
 
@@ -136,7 +136,7 @@
       </div>
     </section>
 
-    <section class="content-section certificate-section" id="certificates">
+    <section class="content-section certificate-section" id="certificates" data-reveal>
       <p class="eyebrow">Learning milestone</p>
       <h2>Certificates</h2>
 
@@ -167,7 +167,7 @@
       </article>
     </section>
 
-    <section class="content-section" id="projects">
+    <section class="content-section" id="projects" data-reveal>
       <p class="eyebrow">Some things I've built</p>
       <h2>Featured Projects</h2>
 
@@ -212,7 +212,7 @@
       </div>
     </section>
 
-    <section class="content-section contact-section" id="contact">
+    <section class="content-section contact-section" id="contact" data-reveal>
       <p class="eyebrow">Let's connect</p>
       <h2>Contact Me</h2>
 
@@ -242,6 +242,24 @@
   </dialog>
 
   <script>
+    const revealTargets = document.querySelectorAll("[data-reveal]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (revealTargets.length && !reducedMotion.matches && "IntersectionObserver" in window) {
+      document.documentElement.classList.add("reveal-ready");
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealTargets.forEach((target) => revealObserver.observe(target));
+    }
+
     const certificatePreview = document.querySelector("#certificate-preview");
     const certificateTrigger = document.querySelector(".certificate-image-button");
     const certificatePreviewClose = document.querySelector(".certificate-preview-close");
