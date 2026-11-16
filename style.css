@@ -242,15 +242,17 @@ h1 span {
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
 }
 
-.button:hover {
+.button:hover,
+.button:focus-visible {
   transform: translateY(-3px);
   border-color: var(--accent);
   background: rgb(94 234 212 / 22%);
-  box-shadow: 0 14px 38px rgb(94 234 212 / 12%);
+  box-shadow: 0 14px 38px rgb(94 234 212 / 12%), 0 0 24px rgb(94 234 212 / 18%);
 }
 
 .button:active {
   transform: translateY(-1px);
+  box-shadow: 0 0 24px rgb(94 234 212 / 18%);
 }
 
 .hero-portrait {
@@ -494,7 +496,12 @@ h1 span {
 .certificate-image-button:hover,
 .certificate-image-button:focus-visible {
   transform: translateY(-3px);
-  box-shadow: 0 20px 46px rgb(0 0 0 / 37%), 0 0 25px rgb(94 234 212 / 15%);
+  box-shadow: 0 20px 46px rgb(0 0 0 / 37%), 0 0 28px rgb(94 234 212 / 20%);
+}
+
+.certificate-image-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0 28px rgb(94 234 212 / 20%);
 }
 
 .certificate-image-button:hover img,
@@ -665,20 +672,164 @@ h1 span {
 }
 
 #contact {
-  padding-bottom: 6rem;
+  width: min(100% - 3rem, 900px);
+  margin: 3rem auto 6rem;
+  padding: clamp(2rem, 6vw, 4rem);
+  overflow: hidden;
+  border: 1px solid rgb(94 234 212 / 24%);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgb(94 234 212 / 11%), transparent 48%),
+    linear-gradient(145deg, rgb(20 35 61 / 88%), rgb(15 25 44 / 92%));
+  box-shadow: 0 24px 70px rgb(0 0 0 / 24%);
 }
 
-#contact .button {
-  margin-top: 1.5rem;
+#contact h2 {
+  max-width: 650px;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+}
+
+#contact > p:not(.eyebrow) {
+  max-width: 620px;
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 1.4rem;
+  color: var(--accent);
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: underline;
+  text-decoration-color: rgb(94 234 212 / 35%);
+  text-underline-offset: 0.28em;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+.contact-email:hover,
+.footer-email:hover {
+  color: #b8fff0;
+  text-decoration-color: currentColor;
+}
+
+.contact-button {
+  display: flex;
+  margin-top: 1.7rem;
+}
+
+.contact-button span {
+  transition: transform var(--transition);
+}
+
+.contact-button:hover span {
+  transform: translateX(4px);
 }
 
 .site-footer {
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem 1.5rem;
   border-top: 1px solid var(--border);
-  background: rgb(20 35 61 / 36%);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(94 234 212 / 7%), transparent 55%),
+    linear-gradient(180deg, rgb(20 35 61 / 62%), rgb(11 16 32 / 96%));
   color: var(--muted);
+}
+
+.footer-content {
+  display: grid;
+  width: min(100%, var(--content-width));
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.35rem 2rem;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  width: fit-content;
+  color: var(--text);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  transition: color var(--transition);
+}
+
+.footer-brand span {
+  color: var(--accent);
+}
+
+.footer-brand:hover {
+  color: var(--accent);
+}
+
+.footer-note {
+  grid-column: 1;
+  font-size: 0.9rem;
+}
+
+.footer-email {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: rgb(94 234 212 / 35%);
+  text-underline-offset: 0.25em;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+.footer-copyright {
+  grid-column: 1 / -1;
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+}
+
+.back-to-top {
+  position: fixed;
+  z-index: 90;
+  right: max(1.25rem, calc((100vw - var(--content-width)) / 2));
+  bottom: 1.25rem;
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgb(94 234 212 / 48%);
+  border-radius: 999px;
+  background: rgb(11 16 32 / 90%);
+  box-shadow: 0 8px 26px rgb(0 0 0 / 35%);
+  color: var(--text);
   font-size: 0.82rem;
-  text-align: center;
+  font-weight: 700;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.back-to-top > span:first-child {
+  color: var(--accent);
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform var(--transition);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  background: rgb(20 35 61 / 96%);
+  box-shadow: 0 12px 30px rgb(0 0 0 / 42%), 0 0 24px rgb(94 234 212 / 18%);
+}
+
+.back-to-top:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgb(94 234 212 / 18%);
+}
+
+.back-to-top:hover > span:first-child {
+  transform: translateY(-2px);
 }
 
 .site-footer p {
@@ -838,6 +989,27 @@ html.reveal-ready [data-reveal].is-visible {
     max-height: 370px;
   }
 
+  #contact {
+    width: min(100% - 2rem, 560px);
+    margin: 1.5rem auto 4rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .footer-email {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 0.4rem;
+  }
+
+  .footer-copyright {
+    grid-column: 1;
+    margin-top: 1rem;
+  }
+
   .button {
     max-width: 100%;
   }
@@ -847,6 +1019,17 @@ html.reveal-ready [data-reveal].is-visible {
   .nav-links a {
     padding: 0.32rem 0.42rem;
     font-size: 0.72rem;
+  }
+
+  .back-to-top {
+    right: 0.8rem;
+    bottom: 0.8rem;
+    min-height: 44px;
+    padding: 0.55rem 0.8rem;
+  }
+
+  .back-to-top-label {
+    display: none;
   }
 
   .skill-list {
