@@ -256,6 +256,36 @@
   </dialog>
 
   <script>
+    const navigationLinks = document.querySelectorAll(".navigation a[href^='#']");
+    const navigationSections = document.querySelectorAll("main section[id]");
+
+    if ("IntersectionObserver" in window) {
+      const visibleSections = new Map();
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          visibleSections.set(entry.target.id, entry.isIntersecting);
+        });
+
+        const activationPoint = window.innerHeight * 0.25;
+        const activeSection = Array.from(navigationSections)
+          .filter((section) => visibleSections.get(section.id))
+          .filter((section) => section.getBoundingClientRect().top <= activationPoint)
+          .pop();
+
+        if (activeSection) {
+          navigationLinks.forEach((link) => {
+            if (link.getAttribute("href") === `#${activeSection.id}`) {
+              link.setAttribute("aria-current", "location");
+            } else {
+              link.removeAttribute("aria-current");
+            }
+          });
+        }
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      navigationSections.forEach((section) => sectionObserver.observe(section));
+    }
+
     const revealTargets = document.querySelectorAll("[data-reveal]");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 

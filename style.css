@@ -154,6 +154,19 @@ p {
   transform: scaleX(1);
 }
 
+.nav-links a[aria-current="location"] {
+  background: rgb(94 234 212 / 6%);
+  color: var(--accent);
+}
+
+.nav-links a[aria-current="location"]::after {
+  transform: scaleX(1);
+}
+
+.logo[aria-current="location"] {
+  color: var(--accent);
+}
+
 .hero {
   display: grid;
   width: min(100% - 3rem, var(--content-width));
