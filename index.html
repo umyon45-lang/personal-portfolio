@@ -32,8 +32,8 @@
 
         <h1>Hi, I'm <span>Yonas.</span></h1>
 
-        <h2 class="hero-subtitle">
-          Building ideas into digital experiences.
+        <h2 class="hero-subtitle" aria-label="Building ideas into digital experiences.">
+          <span class="hero-subtitle-typing" aria-hidden="true">Building ideas into digital experiences.</span>
         </h2>
 
         <p class="hero-text">
@@ -263,14 +263,24 @@
       const visibleSections = new Map();
       const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          visibleSections.set(entry.target.id, entry.isIntersecting);
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
         });
 
-        const activationPoint = window.innerHeight * 0.25;
-        const activeSection = Array.from(navigationSections)
-          .filter((section) => visibleSections.get(section.id))
-          .filter((section) => section.getBoundingClientRect().top <= activationPoint)
-          .pop();
+        const activeSection = Array.from(navigationSections).reduce((mostVisible, section) => {
+          if (!visibleSections.has(section.id)) {
+            return mostVisible;
+          }
+
+          if (!mostVisible || visibleSections.get(section.id) > visibleSections.get(mostVisible.id)) {
+            return section;
+          }
+
+          return mostVisible;
+        }, null);
 
         if (activeSection) {
           navigationLinks.forEach((link) => {
@@ -281,7 +291,7 @@
             }
           });
         }
-      }, { rootMargin: "-20% 0px -70% 0px" });
+      }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
 
       navigationSections.forEach((section) => sectionObserver.observe(section));
     }
@@ -302,6 +312,29 @@
       }, { threshold: 0.12 });
 
       revealTargets.forEach((target) => revealObserver.observe(target));
+    }
+
+    const heroSubtitle = document.querySelector(".hero-subtitle");
+
+    if (heroSubtitle && !reducedMotion.matches) {
+      const typingText = heroSubtitle.querySelector(".hero-subtitle-typing");
+      const fullText = typingText.textContent.trim();
+      let typedCharacters = 0;
+
+      heroSubtitle.dataset.typingText = fullText;
+      heroSubtitle.classList.add("is-typing");
+      typingText.textContent = "";
+
+      const typeNextCharacter = () => {
+        typedCharacters += 1;
+        typingText.textContent = fullText.slice(0, typedCharacters);
+
+        if (typedCharacters < fullText.length) {
+          window.setTimeout(typeNextCharacter, 85);
+        }
+      };
+
+      window.setTimeout(typeNextCharacter, 400);
     }
 
     const certificatePreview = document.querySelector("#certificate-preview");
